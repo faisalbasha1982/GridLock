@@ -11,8 +11,8 @@ const Navbar = () => {
         </h1>
         <ul>
           <li><a href="!#">Users</a></li>
-          <li><Link to="/">Register</Link></li>
-          <li><Link to="/">>Login</Link></li>
+          <li><Link to="/register">Register</Link></li>
+          <li><Link to="/login">>Login</Link></li>
         </ul>
       </nav>  
     );
