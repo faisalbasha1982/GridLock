@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 
 
-// @route GET api/todo
+// @route POST api/todo
 // @desc Test route
 // @access public
 router.post('/',[auth, [
@@ -44,5 +44,44 @@ async (req,res)=> {
 
 
 });
+
+// @route GET api/todo
+// @desc  Get all the todo list
+// @access private
+router.get('/',auth,async (req,res) => {
+
+    try {
+        const todolists =await TodoList.find().sort({date: -1});
+        res.json(todolists);
+    }catch(err){
+        console.log(err.message);
+        res.status(500).send("SERVER ERROR");
+    }
+});
+
+// @route  GET api/todo/:id
+// @desc   Get todolist by ID
+// @access Private
+
+router.get('/:id',auth,async (req,res) => {
+
+    try {
+        const todolist = await TodoList.findById(req.params.id);
+
+        if(!post){
+            return res.status(404).json({ msg: "No Todo List found!"});
+        }
+    
+    }catch(err){
+        console.error(err.message);
+        if(err.kind == 'ObjectId'){
+            return res.status(404).json({ msg: "No Todo List found!"});
+        }
+
+        res.status(500).send("SERVER ERROR");
+    }
+
+})
+
 
 module.exports = router;
