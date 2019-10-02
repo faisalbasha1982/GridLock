@@ -7,9 +7,25 @@ const profileSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    
+    tasks: [
+        {
+            title: {
+                type: String,
+            },
+            description: {
+                type: String
+            },
+            status: {
+                type: Number
+            }
+        }
+    ],
+    date: {
+        type: Date,
+        default: Date.now
+    }    
 });
 
-const User = mongoose.model('user', profileSchema);
+const Profile = mongoose.model('profile', profileSchema);
 
-module.exports = User;
+module.exports = Profile;

@@ -4,6 +4,8 @@ import Landing from '../src/components/layout/Landing';
 import Navbar from '../src/components/layout/Navbar';
 import Login from '../src/components/auth/Login';
 import Register from '../src/components/auth/Register';
+import Dashboard from '../src/components/dashboard/dashboard';
+import PrivateRoute from '../src/components/routing/PrivateRoute';
 import Alert from '../src/components/layout/Alert';
 import { loadUser } from './actions/auth';
 
@@ -35,6 +37,7 @@ const App = () => {
         <Switch>
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
       </section>
     </Fragment>
