@@ -7,7 +7,7 @@ const profileSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    tasks: [
+    todolist: [
         {
             title: {
                 type: String,

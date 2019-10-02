@@ -49,12 +49,12 @@ router.post('/',[auth,[
         profileFields.todolist.push({ title: item.title, description: item.description, status: item.status});
     });
 
-    console.log(profileFields);
-
     try {
+
         let profile = Profile.findOne({
             user: req.user.id,
         });
+
         if(profile) {
             profile = await Profile.findOneAndUpdate(
                 {user: req.user.id},
@@ -67,9 +67,10 @@ router.post('/',[auth,[
 
         // Create 
         profile = new Profile(profileFields);
-        await Profile.save();
+        await profile.save();
+        console.log(profile);
         res.json(profile);
-        
+
     }catch(error){
         console.error(err.message);
         res.status(500).send('Server Error');
