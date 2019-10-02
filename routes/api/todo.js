@@ -68,7 +68,7 @@ router.get('/:id',auth,async (req,res) => {
     try {
         const todolist = await TodoList.findById(req.params.id);
 
-        if(!post){
+        if(!todolist){
             return res.status(404).json({ msg: "No Todo List found!"});
         }
     
